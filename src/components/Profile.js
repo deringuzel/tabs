@@ -8,11 +8,26 @@ class Profile extends React.Component{
 			rush: {}
 		}
 	}
-
+	
 	componentWillMount() {
-		var ref = Tbase.database().ref('tabard-725e5/rushes/' + this.props.params.rushName);
-		JSON.stringify(ref);//const r = $firebaseObject(ref);
-		console.log(ref);
+		var ref = Tbase.database().ref('rushes/' + this.props.params.rushName);
+
+		ref.once("value")
+  			.then(function(snapshot) {
+    		var key = snapshot.key; // "ada"
+    		console.log(snapshot.exists());
+    		var name = snapshot.child('name').val();
+    		this.setState({name: name});
+    		console.log(name);
+    		//this.name = snapshot.child('name').val();
+    		console.log(key);
+    		
+  		});
+    		//var childKey = snapshot.child("name/last").key; // "last"
+    	
+
+		//JSON.stringify(ref);//const r = $firebaseObject(ref);
+		//console.log(ref);
 		//this.setState({rush: rush});
 	}
 
