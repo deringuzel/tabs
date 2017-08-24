@@ -203,8 +203,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
+  font-weight: bold;
+  text-align: center;
   font-family: 'haymakerregular', sans-serif;
+  color: #0f3c04 ;
 }
 h2 {
   text-align: center;
@@ -434,6 +436,12 @@ ul.order li span.count span {
   border-radius: 0;
   background: #fff;
 }
+.fish-edit h1:focus {
+  font-family:'haymakerregular', sans-serif;
+  text-align: left;
+  font-weight: normal;
+  margin: 0;
+}
 .fish-edit input:focus,
 .fish-edit textarea:focus,
 .fish-edit select:focus {
@@ -504,6 +512,7 @@ input[type=submit] {
   font-family: 'Open Sans';
   transition: all 0.2s;
   position: relative;
+  width: 100%;
   z-index: 2;
 }
 button[disabled],
@@ -557,44 +566,21 @@ button.success:after,
 input[type=submit].success:after {
   background: #2dc22d;
 }
-button.github,
-input[type=submit].github,
+
 button.facebook,
 input[type=submit].facebook,
-button.twitter,
-input[type=submit].twitter {
-  border: 0;
-  display: block;
-  margin-bottom: 2rem;
-  width: 100%;
-  color: #fff;
-  padding: 2rem;
-}
-button.github,
-input[type=submit].github {
-  background: #82d465;
-}
-button.github:after,
-input[type=submit].github:after {
-  background: #5cc437;
-}
+
 button.facebook,
 input[type=submit].facebook {
   background: #0f3c04;
+  height: 50px;
   
 }
 button.facebook:after,
 input[type=submit].facebook:after {
   background: #1c4711;
 }
-button.twitter,
-input[type=submit].twitter {
-  background: #5ea9dd;
-}
-button.twitter:after,
-input[type=submit].twitter:after {
-  background: #2c8dd0;
-}
+
 .event-selector {
   background: #fff;
   max-width: 500px;
@@ -611,4 +597,84 @@ input[type=submit].twitter:after {
   text-align: center;
   font-size: 3rem;
 }
+
+body {background: #EEEEEE;padding: 40px}
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #0f3c04;
+
+}
+
+.tip-left {
+  top: 8px;
+  left: -23px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.dialogbox .body {
+  position: relative;
+  max-width: 400px;
+  height: auto;
+  margin: 20px 10px;
+  padding: 3px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  border: 3px solid #0f3c04;
+  background-color: #EEEEEE;
+
+}
+
+.body .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: left;
+  color: #797979;
+
+}
+
+.boxed {
+  border: 2px solid #0f3c04;
+  text-align: center;
+  font-family:'haymakerregular';
+   margin-bottom: 10px;
+}
+
+.commentHeader {
+  background-color: #0f3c04;
+  text-align: left;
+  color: white ;
+  font-family:'haymakerregular'
+}
+
+.warningMessage {
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #797979;
+}
+
+table {
+    font-family: sans-serif;
+    color: #797979;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+th {
+  border: 1px solid black;
+}
+
+
 
