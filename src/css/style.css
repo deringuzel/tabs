@@ -423,7 +423,7 @@ ul.order li span.count span {
 .fish-edit input,
 .fish-edit textarea,
 .fish-edit select {
-  width: 33.33%;
+  width: 100%;
   padding: 10px;
   line-height: 1;
   font-size: 1.2rem;
@@ -451,7 +451,7 @@ ul.order li span.count span {
 .fish-edit textarea {
   width: 100%;
 }
-.fish-edit input:last-of-type {
+.fish-edit input {
   width: 100%;
 }
 .fish-edit button {
@@ -581,6 +581,23 @@ input[type=submit].facebook:after {
   background: #1c4711;
 }
 
+button.cut,
+input[type=submit].cut,
+
+button.cut,
+input[type=submit].cut{
+  background: white;
+  border: 2px solid #830A0A;
+  height: 100%;
+  color: black;
+  
+}
+button.cut:after,
+input[type=submit].cut:after {
+  background: #950606;
+  color: white;
+}
+
 .event-selector {
   background: #fff;
   max-width: 500px;
@@ -675,6 +692,8 @@ table {
 th {
   border: 1px solid black;
 }
+
+
 
 
 
