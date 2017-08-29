@@ -30,7 +30,6 @@ class tMember extends React.Component{
 
 	renderOrder(key) {
 		const rush = this.state.rushes[key];
-		console.log(rush)
 		return (
 			<li key={key}> 
 				<span>{rush.name}</span>
@@ -44,33 +43,50 @@ class tMember extends React.Component{
 	}
 
 	filter(dictionary) {
-		var output = {};
+		var mainOutput = {};
+		var outputUncut = {};
+		var outputCut = {}
 		for (var key in dictionary) {
 			if(dictionary.hasOwnProperty(key)) {
-				if (key.indexOf(this.state.search) !== -1) {
-					output[key] = dictionary[key];
+				if (key.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1) {
+					if (this.state.rushes[key].cut === "CUT") {
+						outputCut[key] = dictionary[key];
+					} else {
+						outputUncut[key] = dictionary[key];
+					}
 				}
 			}
 		}
-		return output;
+		mainOutput["outputCut"] = outputCut;
+		mainOutput["outputUncut"] = outputUncut;
+
+		return mainOutput;
 	}
 
 	render() {
 			if (this.state.rushes) {
 				const filteredRushes = this.filter(this.state.rushes);
+				const filteredCutRushes = filteredRushes["outputCut"];
+				const filteredUncutRushes = filteredRushes["outputUncut"];
 				return (
 					<div>
 						<button className="facebook" 
-						onClick={() => this.context.router.transitionTo(`/`)}>Log Out</button>
+						onClick={() => this.context.router.transitionTo(`/`)}>Home</button>
 						<form className="event-selector">
 							<h2>Search</h2>
 							<input type="text" required placeholder="Name"
 							onChange={this.updateSearch}/>
 							{
-								Object.keys(filteredRushes).map((key, index) => (
+								Object.keys(filteredUncutRushes).map((key, index) => (
 								<button key={index}
-								onClick={() => this.context.router.transitionTo(`/profile/deringuzel/${key}`)}>
-								 {filteredRushes[key].name} {filteredRushes[key].lastName}</button>))
+								onClick={() => this.context.router.transitionTo(`/profile/${this.props.params.uId}/${key}`)}>
+								 {filteredUncutRushes[key].name} {filteredUncutRushes[key].lastName}</button>))
+							}
+							{
+								Object.keys(filteredCutRushes).map((key, index) => (
+								<button className="cut" key={index}
+								onClick={() => this.context.router.transitionTo(`/profile/${this.props.params.uId}/${key}`)}>
+								 {filteredCutRushes[key].name} {filteredCutRushes[key].lastName}</button>))
 							}
 						</form>
 					</div>
