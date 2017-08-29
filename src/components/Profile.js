@@ -1,6 +1,7 @@
 import React from 'react';
 import Tbase from './Tbase';
 import ID from './ID';
+//TODO: handle log in information, in the render function
 
 class Profile extends React.Component{
 	constructor() {
@@ -36,7 +37,7 @@ class Profile extends React.Component{
 
 	handleComment() {
 		const today = new Date();
-    	const key = this.props.params.membername + ", " + today;
+    	const key = today + ", " +  this.props.params.membername;
     	const comments = this.state.rush.comments;
 		const updatedComments = {...comments,
 			[key] : this.comment.value
@@ -52,7 +53,7 @@ class Profile extends React.Component{
 
 	handleVote() {
 		//TODO: change to rush chairs
-		if (this.props.params.membername === 'deringuzel') {
+		if (this.props.params.membername === 'deringüzel') {
 			const today = new Date();
 	    	const key = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
 
@@ -84,29 +85,30 @@ class Profile extends React.Component{
 
 	handleOpinion() {
 		const rating = this.state.rush.rating;
-		const value = rating[this.opinion.value];
-		console.log(value); 
-		console.log("hello");
-		const updatedRating = {...rating,
-			[this.opinion.value] : value
+		const key = this.refs.option.value;
+		const value = rating[key];
+		const updatedValue = value + 1; 
+		const updatedOpinion = {...rating,
+			[key] : updatedValue
 		}
-		this.handleOpinion(updatedRating);
+		this.updateOpinion(updatedOpinion);
 	}
 
-	updateOpinion(updatedRating) {
+	updateOpinion(updatedOpinion) {
 		const rush = {...this.state.rush};
-		rush.rating = updatedRating;
+		rush.rating = updatedOpinion;
 		this.setState({rush});
 	}
 
 	render() {
 		const rush = this.state.rush;
 		//TODO: change to rush comittee
-		if (this.props.params.membername === 'deringuzel') {
+		if (this.props.params.membername === 'deringüzel') {
 			this.auth = "Submit Vote";
 		} else {
 			this.auth = "WARNING: ONLY RUSH CHAIRS CAN SUBMIT!"
 		}
+
 		if (rush) {
 			return (
 				<div className="catch-of-the-day">
@@ -119,9 +121,9 @@ class Profile extends React.Component{
 						</div>
 						<div>
 							<form className="fish-edit" onSubmit={() => this.handleOpinion()}>
-								<select ref={(input) => this.opinion = input}>
+								<select ref="option">
 										<option value="love">Love!</option>
-										<option value="hate">Hate</option>
+										<option value="hate">Hate!</option>
 										<option value="NA">Don't know</option>
 								</select>
 								<button type="submit">Submit Rating</button>
@@ -135,6 +137,8 @@ class Profile extends React.Component{
 								<input ref={(input) => this.against = input} type="number" placeholder="Against"/>
 								<button type="submit">{this.auth}</button>
 							</form>
+							<button className="facebook" 
+							onClick={() => this.context.router.transitionTo(`/tmember/${this.props.params.membername}/search`)}>Search</button>
 						</div>
 					</div>
 					<div className="menu"><ID rush={rush} tagline="ID"/></div>		
@@ -142,11 +146,17 @@ class Profile extends React.Component{
 			)		
 	} else {
 		return (
-			<h1>Trash 2017</h1>	
+			<div>
+				<h1>Trash 2017</h1>	
+			</div>
 			)
 	}
 
 	}
+}
+
+Profile.contextTypes = {
+	router: React.PropTypes.object
 }
 
 export default Profile;
