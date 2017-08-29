@@ -32,6 +32,12 @@ class Information extends React.Component {
 								<div className="commentHeader">Events</div>
 								<div className="warningMessage">{eventString}</div>
 						</div>
+						<div className="boxed">
+								<div className="commentHeader">General Opinion</div>
+								<div className="warningMessage">{"Love: " + rush.rating["love"]}</div>
+								<div className="warningMessage">{"Hate: " + rush.rating["hate"]}</div>
+								<div className="warningMessage">{"Don't know: " + rush.rating["NA"]}</div>
+						</div>
 				</div>
 				
 	)
