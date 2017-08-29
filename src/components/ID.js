@@ -1,6 +1,5 @@
 import React from 'react';
 import Information from './Information';
-
 class ID extends React.Component {
 	render() {
 		const rush = this.props.rush;
