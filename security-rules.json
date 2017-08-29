@@ -1,14 +1,24 @@
-// These are your firebase security rules - put them in the "Security & Rules" tab of your database
 {
-    "rules": {
-        // won't let people delete an existing room
-        ".write": "!data.exists()",
-        ".read": true,
-        "$room" : {
-          // only the store owner can edit the data
-          ".write" : "auth != null && (!data.exists() || data.child('owner').val() === auth.uid)",
-          ".read" : true
-        }
-    }
+  "rules": {
+    ".read":  "auth.email == 'guzelderin@hotmail.com' || 
+               auth.email == 'oliviamatlin@gmail.com' || 
+               auth.email == 'shannah.reagan1@gmail.com'||
+               auth.email == 'santoni@wharton.upenn.edu'||
+              auth.email == 'soccerprincess@rcn.com'||
+              auth.email == 'camcassard@gmail.com' ||
+               auth.email == 'andreamhakim@gmail.com' ||
+              auth.email == 'littlemsactress2@aol.com' ||
+                  auth.email == 'sarah.abbasi98@gmail.com'",
+
+    ".write": "auth.email == 'guzelderin@hotmail.com' || 
+               auth.email == 'oliviamatlin@gmail.com' || 
+               auth.email == 'shannah.reagan1@gmail.com'||
+               auth.email == 'santoni@wharton.upenn.edu'||
+              auth.email == 'soccerprincess@rcn.com'||
+              auth.email == 'camcassard@gmail.com' ||
+               auth.email == 'andreamhakim@gmail.com' ||
+              auth.email == 'littlemsactress2@aol.com' ||
+                  auth.email == 'sarah.abbasi98@gmail.com'"
+  }
 }
 
